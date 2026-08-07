@@ -20,7 +20,7 @@
 
         h1 {
             color: #d63384;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             animation: fadeIn 2s ease-in-out;
             text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.6);
@@ -28,21 +28,25 @@
 
         p {
             color: #555;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 30px;
             animation: fadeIn 3s ease-in-out;
         }
 
         /* Hediye Kutusu ve Buket Alanı */
-        .surprise-box {
-            font-size: 90px;
+        .surprise-container {
+            font-size: 100px;
             cursor: pointer;
             animation: bounce 2s infinite alternate;
             user-select: none;
             transition: transform 0.3s ease;
+            min-height: 120px; /* Kutu varken de yer kaplaması için */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .surprise-box:hover {
+        .surprise-container:hover {
             transform: scale(1.15);
         }
 
@@ -56,17 +60,18 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Çiçekler açtığında büyüme efekti */
+        /* Buket açıldığında büyüme ve parlama efekti */
         .open-animation {
-            animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: bloom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        @keyframes popUp {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes bloom {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
-        /* Uçan kalpler */
+        /* Tıklayınca çıkan uçan kalpler */
         .heart {
             position: absolute;
             color: #ff3366;
@@ -81,7 +86,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-180px) scale(1.6);
+                transform: translateY(-200px) scale(1.8);
                 opacity: 0;
             }
         }
@@ -99,44 +104,50 @@
     <h1 id="title">Sana Bir Sürprizim Var 🎁</h1>
     <p id="instruction">Paketi açmak için üzerine tıkla!</p>
 
-    <div class="surprise-box" id="box" onclick="openBox(event)">
+    <!-- Sürpriz Alanı (Başlangıçta Hediye Kutusu) -->
+    <div class="surprise-container" id="giftBox" onclick="revealBouquet(event)">
         🎁
     </div>
 
-    <div class="footer-note">Bu sitenin kodları senin için yazıldı.</div>
+    <div class="footer-note">Bu kodlar sadece senin için yazıldı. ❤️</div>
 
     <script>
-        let isOpen = false;
+        let hasOpened = false;
 
-        function openBox(event) {
-            let box = document.getElementById('box');
-            let title = document.getElementById('title');
-            let instruction = document.getElementById('instruction');
+        function revealBouquet(event) {
+            const giftBox = document.getElementById('giftBox');
+            const title = document.getElementById('title');
+            const instruction = document.getElementById('instruction');
 
-            if (!isOpen) {
-                // Kutuyu aç ve buket yap
-                box.innerHTML = '💐';
-                box.classList.add('open-animation');
-                title.innerHTML = 'Sana Özel Hazırlandı! ❤️';
+            if (!hasOpened) {
+                // 1. Kutu açılıyor ve buket çıkıyor
+                giftBox.innerHTML = '💐';
+                giftBox.classList.remove('bounce'); // Eski animasyonu kaldır
+                giftBox.classList.add('open-animation'); // Yeni açılma animasyonunu ekle
+                
+                // 2. Yazılar değişiyor
+                title.innerHTML = 'Sana Özel Hazırlandı! 💖';
                 instruction.innerHTML = 'Çiçeklere dokunmaya devam et!';
-                isOpen = true;
+                
+                hasOpened = true;
             }
 
-            // Kalp efektleri üret
-            for (let i = 0; i < 6; i++) {
+            // 3. Her tıklamada kalp efekti üret (İster kutuya, ister bukete tıkla)
+            for (let i = 0; i < 7; i++) {
                 let heart = document.createElement('div');
                 heart.className = 'heart';
                 heart.innerHTML = '❤️';
                 
-                let rect = box.getBoundingClientRect();
-                let x = rect.left + (rect.width / 2) + (Math.random() * 80 - 40);
-                let y = rect.top + (Math.random() * 20 - 10);
+                // Tıklama konumuna göre rastgele saçılma
+                let x = event.clientX + (Math.random() * 100 - 50);
+                let y = event.clientY + (Math.random() * 50 - 25);
                 
                 heart.style.left = x + 'px';
                 heart.style.top = y + 'px';
                 
                 document.body.appendChild(heart);
                 
+                // 1.5 saniye sonra kalbi sil
                 setTimeout(() => {
                     heart.remove();
                 }, 1500);
