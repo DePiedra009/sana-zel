@@ -3,187 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özel Hediye Deneyimi</title>
+    <title>Hediye Paketi Sürprizi</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #0b1329; /* Derin Lacivert Arka Plan */
-            color: #ffffff;
+            background-color: #0b0f19; /* Lacivert tonlarında modern arka plan */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-image: radial-gradient(circle at 50% 30%, #17244a 0%, #0b1329 80%);
-        }
-
-        header {
-            position: absolute;
-            top: 30px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            color: #e2e8f0;
-        }
-
-        p.subtitle {
-            font-size: 1.1rem;
-            color: #94a3b8;
+            color: #ffffff;
         }
 
         .container {
+            text-align: center;
             position: relative;
-            width: 380px;
-            height: 380px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
         }
 
-        /* Daha Büyük Kırmızı-Sarı Hediye Paketi Tasarımı */
+        /* Hediye Paketi Stilleri */
         .gift-box {
-            position: absolute;
-            width: 240px;
-            height: 240px;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(253, 224, 71, 0.3);
+            position: relative;
+            width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, #e63946, #d90429); /* Kırmızı tonları */
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, opacity 1s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(253, 224, 71, 0.4);
+            margin: 0 auto;
         }
 
-        /* Sarı (Altın) Kurdeleler */
-        .gift-box::before {
-            content: '';
+        .gift-box:hover {
+            transform: scale(1.05);
+        }
+
+        /* Kurdeleler (Sarı) */
+        .ribbon-vertical {
             position: absolute;
             width: 40px;
             height: 100%;
-            background: linear-gradient(to right, #eab308, #fef08a, #eab308);
+            background: linear-gradient(135deg, #ffb703, #fb8500); /* Sarı-turuncu tonları */
         }
 
-        .gift-box::after {
-            content: '';
+        .ribbon-horizontal {
             position: absolute;
             width: 100%;
             height: 40px;
-            background: linear-gradient(to bottom, #eab308, #fef08a, #eab308);
+            background: linear-gradient(135deg, #ffb703, #fb8500);
         }
 
-        .ribbon-bow {
+        .bow {
             position: absolute;
-            top: -35px;
-            width: 80px;
-            height: 40px;
-            background: #eab308;
+            top: -45px;
+            width: 90px;
+            height: 50px;
+            background: #ffb703;
             border-radius: 50% 50% 0 0;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* Ortaya Çıkacak Buket Alanı */
-        .bouquet {
+        .bow::before, .bow::after {
+            content: '';
             position: absolute;
+            top: -20px;
+            width: 50px;
+            height: 50px;
+            border: 8px solid #fb8500;
+            border-radius: 50%;
+        }
+
+        .bow::before {
+            left: -35px;
+            transform: rotate(-30deg);
+        }
+
+        .bow::after {
+            right: -35px;
+            transform: rotate(30deg);
+        }
+
+        /* Çiçek Buketi Stilleri */
+        .bouquet-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
             opacity: 0;
-            transform: scale(0.4) translateY(40px);
-            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-align: center;
+            transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1s ease;
             pointer-events: none;
         }
 
-        .bouquet-icon {
-            font-size: 120px;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
-            animation: floatBouquet 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes floatBouquet {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-8px); }
-        }
-
-        .bouquet-text {
-            margin-top: 15px;
-            font-size: 1.4rem;
-            color: #fef08a;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-            font-weight: 500;
-        }
-
-        /* Açılma / Yok Olma Animasyon Sınıfları */
-        .container.open .gift-box {
-            transform: scale(1.4) rotate(15deg);
-            opacity: 0;
-            filter: blur(12px);
-        }
-
-        .container.open .bouquet {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
+        .bouquet {
+            font-size: 150px; /* Büyük görünüm için */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
         }
 
         .instruction {
-            position: absolute;
-            bottom: 50px;
-            font-size: 1rem;
-            color: #94a3b8;
-            animation: pulse 2s infinite;
+            margin-top: 25px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #adb5bd;
+            transition: opacity 0.5s ease;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        /* Animasyon Sınıfları */
+        .gift-box.open {
+            transform: scale(1.5) rotate(15deg);
+            opacity: 0;
+        }
+
+        .bouquet-container.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Özel Bir Hediye</h1>
-        <p class="subtitle">Sizi Bekliyor</p>
-    </header>
-
-    <div class="container" id="giftContainer" onclick="openGift()">
-        <!-- Kırmızı & Sarı Hediye Kutusu -->
-        <div class="gift-box" id="giftBox">
-            <div class="ribbon-bow"></div>
+    <div class="container">
+        <!-- Hediye Paketi -->
+        <div class="gift-box" id="giftBox" onclick="openGift()">
+            <div class="bow"></div>
+            <div class="ribbon-vertical"></div>
+            <div class="ribbon-horizontal"></div>
         </div>
 
-        <!-- Çiçek Buketi -->
-        <div class="bouquet" id="bouquet">
-            <div class="bouquet-icon">💐</div>
-            <div class="bouquet-text">Sürpriz Buketiniz!</div>
+        <!-- Çiçek Buketi (Başlangıçta Gizli) -->
+        <div class="bouquet-container" id="bouquetContainer">
+            <div class="bouquet">💐</div>
         </div>
+
+        <div class="instruction" id="instructionText">Hediye paketini açmak için üzerine tıklayın!</div>
     </div>
-
-    <div class="instruction">Paketi açmak için üzerine tıklayın</div>
 
     <script>
         function openGift() {
-            const container = document.getElementById('giftContainer');
-            const instruction = document.querySelector('.instruction');
-            
-            if (!container.classList.contains('open')) {
-                container.classList.add('open');
-                instruction.style.opacity = '0';
-            }
+            const giftBox = document.getElementById('giftBox');
+            const bouquetContainer = document.getElementById('bouquetContainer');
+            const instructionText = document.getElementById('instructionText');
+
+            // Hediye paketini yavaşça yok et
+            giftBox.classList.add('open');
+            instructionText.style.opacity = '0';
+
+            // Paket kaybolduktan sonra çiçeği ortaya çıkar
+            setTimeout(() => {
+                giftBox.style.display = 'none';
+                bouquetContainer.classList.add('show');
+                instructionText.innerText = "Sürpriz! Harika bir buket kazandınız.";
+                instructionText.style.opacity = '1';
+            }, 600);
         }
     </script>
+
 </body>
 </html>
