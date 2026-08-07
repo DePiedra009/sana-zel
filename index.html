@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Özel</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500&display=swap');
 
         * {
             box-sizing: border-box;
@@ -14,79 +14,82 @@
         }
 
         body {
-            background: #0f0f11;
+            background: radial-gradient(circle at center, #131c31 0%, #0a0f1d 100%);
             height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow: hidden;
-            color: #f1f1f1;
+            color: #e2e8f0;
         }
 
         h1 {
-            font-weight: 300;
-            font-size: 1.8rem;
-            letter-spacing: 3px;
+            font-weight: 400;
+            font-size: 1.7rem;
+            letter-spacing: 2px;
             margin-bottom: 8px;
-            color: #e2e2e2;
+            color: #f8fafc;
             text-align: center;
         }
 
         p {
             font-weight: 300;
             font-size: 0.95rem;
-            color: #888;
-            letter-spacing: 1px;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
             margin-bottom: 50px;
             text-align: center;
         }
 
-        /* Minimalist Hediye Kutusu */
+        /* Lacivert Modern Kutu Konteyneri */
         .gift-container {
             position: relative;
             cursor: pointer;
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
         .gift-container:hover {
             transform: scale(1.05);
         }
 
+        /* Kutu Gövdesi */
         .box-body {
             position: absolute;
             bottom: 0;
-            width: 110px;
-            height: 90px;
-            background: #1e1e24;
-            border: 1px solid #333;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            width: 120px;
+            height: 95px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
+        /* Şık Gümüş Kurdele */
         .box-body::after {
             content: '';
             position: absolute;
-            left: 47px;
-            width: 16px;
-            background: #c5a059; /* Altın Sarısı Zarif Detay */
+            left: 51px;
+            width: 18px;
+            background: #cbd5e1;
             height: 100%;
         }
 
+        /* Kutu Kapağı */
         .box-lid {
             position: absolute;
             top: 15px;
-            width: 130px;
-            height: 25px;
-            background: #282830;
-            border: 1px solid #444;
-            border-radius: 4px;
+            width: 140px;
+            height: 28px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 5px;
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s ease;
             z-index: 10;
         }
@@ -94,40 +97,40 @@
         .box-lid::after {
             content: '';
             position: absolute;
-            left: 56px;
+            left: 60px;
             top: 0;
-            width: 16px;
-            height: 25px;
-            background: #c5a059;
+            width: 18px;
+            height: 28px;
+            background: #cbd5e1;
         }
 
-        /* Açılma Efekti */
+        /* Kapak Açılma Animasyonu */
         .open .box-lid {
-            transform: translateY(-80px) rotate(-12deg) scale(0.95);
+            transform: translateY(-85px) rotate(-15deg) scale(0.95);
         }
 
-        /* Zarif Çiçek Tasarımı */
+        /* Çiçek Buketi */
         .bouquet {
             position: absolute;
-            bottom: 30px;
-            font-size: 65px;
+            bottom: 35px;
+            font-size: 70px;
             transform: scale(0);
             transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 5;
             user-select: none;
-            filter: drop-shadow(0 10px 15px rgba(197, 160, 89, 0.2));
+            filter: drop-shadow(0 10px 20px rgba(203, 213, 225, 0.2));
         }
 
         .open .bouquet {
-            transform: scale(1) translateY(-25px);
+            transform: scale(1) translateY(-30px);
         }
 
-        /* Minimal Kalp Efektleri */
-        .heart {
+        /* Modern Işıltılar */
+        .sparkle {
             position: absolute;
-            color: #c5a059;
-            font-size: 18px;
-            animation: floatUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            color: #cbd5e1;
+            font-size: 16px;
+            animation: floatUp 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             pointer-events: none;
             z-index: 20;
         }
@@ -138,7 +141,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-160px) scale(1.4);
+                transform: translateY(-150px) scale(1.4);
                 opacity: 0;
             }
         }
@@ -147,7 +150,7 @@
             position: absolute;
             bottom: 25px;
             font-size: 0.75rem;
-            color: #555;
+            color: #64748b;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -156,7 +159,7 @@
 <body>
 
     <h1 id="title">Sizin İçin</h1>
-    <p id="instruction">Kilidi açmak için dokunun</p>
+    <p id="instruction">Kutuyu açmak için dokunun</p>
 
     <!-- Hediye Kutusu -->
     <div class="gift-container" id="giftBox" onclick="openBox(event)">
@@ -165,7 +168,7 @@
         <div class="bouquet">🌹</div>
     </div>
 
-    <div class="footer-note">Özel Koleksiyon</div>
+    <div class="footer-note">Özel Tasarım</div>
 
     <script>
         let opened = false;
@@ -177,29 +180,29 @@
 
             if (!opened) {
                 box.classList.add('open');
-                title.innerHTML = 'İyi ki Varsınız';
-                instruction.innerHTML = 'Detayları incelemek için dokunmaya devam edin';
+                title.innerHTML = 'İyi ki Varsın';
+                instruction.innerHTML = 'Keşfetmeye devam et';
                 opened = true;
             }
 
-            // Zarif Altın/Kırmızı Işıltılar
+            // Gümüş ve kırmızı zarif parıltılar
             for (let i = 0; i < 5; i++) {
-                let heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = i % 2 === 0 ? '✨' : '🌹';
+                let sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = i % 2 === 0 ? '✨' : '🌹';
                 
                 let rect = box.getBoundingClientRect();
-                let x = rect.left + (rect.width / 2) + (Math.random() * 70 - 35);
-                let y = rect.top + (Math.random() * 30 - 15);
+                let x = rect.left + (rect.width / 2) + (Math.random() * 80 - 40);
+                let y = rect.top + (Math.random() * 40 - 20);
                 
-                heart.style.left = x + 'px';
-                heart.style.top = y + 'px';
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
                 
-                document.body.appendChild(heart);
+                document.body.appendChild(sparkle);
                 
                 setTimeout(() => {
-                    heart.remove();
-                }, 1500);
+                    sparkle.remove();
+                }, 1400);
             }
         }
     </script>
