@@ -168,3 +168,90 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buket Sürprizi</title>
+    <style>
+        /* Genel Sayfa Ayarları */
+        body {
+            margin: 0;
+            padding: 0;
+            /* Orijinal görüntüdeki koyu arka plan rengi */
+            background-color: #0b0f19;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        /* Ana içerik kapsayıcısı */
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px; /* 3D emoji ile metin arasındaki boşluk */
+        }
+
+        /* 3D Emoji Buketi */
+        .bouquet-emoji {
+            font-size: 150px; /* Emojiyi büyütmek için */
+            line-height: 1;
+            /* Hafif bir 3D derinlik hissi için gölge */
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            transform: rotate(15deg); /* Orijinal görüntüdeki açıyı korumak için */
+        }
+
+        /* Metin Satırı */
+        .message-line {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Metin ve yandaki emojiler arası boşluk */
+            font-size: 32px; /* Metin boyutu */
+            font-weight: 500;
+            white-space: nowrap; /* Metnin tek satırda kalmasını sağlar */
+        }
+
+        /* Metin yanındaki küçük emojiler */
+        .side-emoji {
+            font-size: 28px;
+        }
+
+        /* Responsive Ayarlar (Mobil uyum) */
+        @media (max-width: 600px) {
+            .bouquet-emoji { font-size: 100px; }
+            .message-line { font-size: 20px; gap: 10px; }
+            .side-emoji { font-size: 18px; }
+            .container { gap: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Büyük 3D Buket Emojisi -->
+        <div class="bouquet-emoji">💐</div>
+
+        <!-- Metin ve Yan Emojiler (Üst Satır) -->
+        <div class="message-line">
+            <span class="side-emoji">💐</span>
+            <span>Harika Bir Buket Kazandınız!</span>
+            <span class="side-emoji">💐</span>
+        </div>
+
+        <!-- Metin ve Yan Emojiler (Alt Satır) -->
+        <div class="message-line">
+            <span class="side-emoji">💐</span>
+            <span>Harika Bir Buket Kazandınız!</span>
+            <span class="side-emoji">💐</span>
+        </div>
+    </div>
+
+</body>
+</html>
